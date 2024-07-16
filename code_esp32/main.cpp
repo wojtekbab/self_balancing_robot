@@ -47,6 +47,7 @@ void setup(void)
   mutex_control_values = xSemaphoreCreateMutex();
   queue_reference_velocities = xQueueCreate(QUEUE_JOYSTICK_LENGTH, sizeof(Reference_velocities_struct));
   semaphore_mpu_initialized = xSemaphoreCreateBinary();
+  xEventGroup = xEventGroupCreate();
 
   // wifi
   WiFi.begin(ssid, password);

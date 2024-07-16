@@ -15,6 +15,7 @@
 #include "tasks.hpp"
 #include "defines.hpp"
 #include "utilities.hpp"
+#include "freertos/event_groups.h"
 
 void mpu_measurement_task(void *pvParameters)
 {
@@ -100,7 +101,6 @@ void mpu_measurement_task(void *pvParameters)
 
   while (1)
   {
-
     // measure values
     mpu.getEvent(&acc, &gyro, &temp);
 
@@ -156,10 +156,10 @@ void theta_obs_task(void *pvParameters)
     last_time = micros();
 
     // axis x of gyro sensor is y_b axis from mathematical model
-    u = -MPU_measurement_struct.gyro.gyro.x;                     
+    u = -MPU_measurement_struct.gyro.gyro.x;
 
-    // axis y of accel sensor is x_b axis of model, z sensor's is z_b model's                                       
-    z = atan2(-MPU_measurement_struct.acc.acceleration.y, MPU_measurement_struct.acc.acceleration.z); 
+    // axis y of accel sensor is x_b axis of model, z sensor's is z_b model's
+    z = atan2(-MPU_measurement_struct.acc.acceleration.y, MPU_measurement_struct.acc.acceleration.z);
 
     x_apriori = F * x_post + dt * u;
     P_apriori = F * P_post * F + (dt * var_gyro);
@@ -204,6 +204,7 @@ void x_psi_obs_task(void *pvParameters)
 
   while (1)
   {
+
     dt = (float)(micros() - last_time) / 1000000.0f;
     last_time = micros();
 
@@ -256,6 +257,15 @@ void reference_task(void *pvParameters)
 
   while (1)
   {
+    // check start/stop button event
+    EventBits_t uxBits = xEventGroupGetBits(xEventGroup);
+    if (false == (uxBits & START_STOP_BIT))
+    {
+      vTaskDelay(50 / portTICK_PERIOD_MS);
+      last_time = micros();
+      continue;
+    }
+
     // read values
     xQueueReceive(queue_reference_velocities, &reference_velocities_struct, 0);
 
@@ -265,6 +275,9 @@ void reference_task(void *pvParameters)
 
     reference_x_dot = (reference_velocities_struct.reference_x_dot / 100.0f) * REFERENCE_X_DOT_MAX;
     reference_psi_dot = (reference_velocities_struct.reference_psi_dot / 100.0f) * REFERENCE_PSI_DOT_MAX;
+
+    reference_x_dot = 0.1885; //(reference_velocities_struct.reference_x_dot / 100.0f) * REFERENCE_X_DOT_MAX;
+    reference_psi_dot = 1.2566;
 
     reference_x += reference_x_dot * dt;
     reference_psi += reference_psi_dot * dt;
@@ -302,7 +315,7 @@ void motors_task(void *pvParameters)
   // values for matrix K taken from Matlab script with lqr(A,B,Q,R)
   const float K_LQR[2][6] = {
 
-      -1.0000, -1.5947, -6.3458, -1.4512, -0.0000, 0.0000, -0.0000, -0.0000, -0.0000, -0.0000, 1.0000, 1.0034};
+      -1.0000, -1.6047, -5.9747, -1.3647, 0.0000, 0.0000, -0.0000, -0.0000, -0.0000, -0.0000, 1.0000, 1.0034};
 
   // motor params and friction
   float b_Coul_L = 0.1f;        // friction static [Nm] (FOR ESTIMATE)
@@ -333,6 +346,18 @@ void motors_task(void *pvParameters)
 
   while (1)
   {
+    // check start/stop button event
+    EventBits_t uxBits = xEventGroupGetBits(xEventGroup);
+    if (false == (uxBits & START_STOP_BIT))
+    {
+      vTaskDelay(50 / portTICK_PERIOD_MS);
+      ledcWrite(chanel_mot1_A, 0);
+      ledcWrite(chanel_mot1_B, 0);
+      ledcWrite(chanel_mot2_A, 0);
+      ledcWrite(chanel_mot2_B, 0);
+      continue;
+    }
+
     // read values
     xSemaphoreTake(mutex_state_variables, portMAX_DELAY);
     state_variables = state_variables_global;

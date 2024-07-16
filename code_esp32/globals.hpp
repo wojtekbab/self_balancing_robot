@@ -18,6 +18,8 @@
 #include <freertos/semphr.h>
 #include <freertos/task.h>
 #include <freertos/queue.h>
+#include "freertos/event_groups.h"
+
 
 /**
  * @brief struct contains reference data from html page
@@ -87,5 +89,8 @@ extern const char *password;
 
 // web server object
 extern AsyncWebServer server;
+
+// start/stop button
+extern EventGroupHandle_t xEventGroup;
 
 #endif // GLOBALS_HPP

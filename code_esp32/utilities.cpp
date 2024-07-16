@@ -8,6 +8,8 @@
  * @copyright Copyright (c) 2024
  * 
  */
+
+#include "utilities.hpp"
 #include "globals.hpp"
 
 void calculate_difference_of_structs(const State_variables_struct* state1, const State_variables_struct* state2, float result[6])

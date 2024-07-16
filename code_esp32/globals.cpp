@@ -47,3 +47,6 @@ const char *password = "PASSWORD";
 
 // web server object
 AsyncWebServer server(80);
+
+// start/stop button
+EventGroupHandle_t xEventGroup = NULL;

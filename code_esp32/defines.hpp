@@ -39,4 +39,7 @@ static const BaseType_t app_cpu = 0;
 static const BaseType_t app_cpu = 1;
 #endif
 
+// for group event
+#define START_STOP_BIT (1 << 0)
+
 #endif // DEFINES_HPP
