@@ -42,7 +42,7 @@ The MATLAB code is used to calculate mathematical model and simulate system.
 2. Run `s2_mathematical_model.m` to load parameters and calculate K matrix.
 3. Run `sim1_unlinear_model_with_LQR.slx` to test system output for given reference velocities or different initial state.
 
-## Inventor ProjectV
+## Inventor Project
 Image from Inventor project was included to repository. 3D model was created to design distribution of elements and to calculate parameters of vehicle inertia. 
 
 
@@ -56,17 +56,23 @@ Image from Inventor project was included to repository. 3D model was created to 
 </div>
 
 ## KiCad Project
-Images from KiCad project was included to repository. PCB board was created for electronic part from system to avoid EMI interferences from DC motors.
+Images from KiCad project was included to repository. PCB board was created for electronic parts from system to avoid EMI interferences from DC motors.
 
 
 ### Images
 <div align="left">
 <p>
-    <img src="assets/pcb_kicad_paths.png" alt="Inventor Assembly" width="200"/>
-    <img src="assets/pcb_kicad_visualization.png" alt="Real model" width="200"/>
-    <img src="assets/pcb_soldered.png" alt="Real model" width="200"/>
+    <img src="assets/pcb_kicad_paths.png" alt="Inventor Assembly" height="100"/>
+    <img src="assets/pcb_kicad_visualization.png" alt="Real model" height="100"/>
+    <img src="assets/pcb_soldered.png" alt="Real model" height="100"/>
 </p>
     <p><em>Figure 2: designed paths, visualization, home made board</em></p>
 </div>
 
+## Demo
+
+<p>
+  Link to demo video:
+  <a href="https://www.youtube.com/watch?v=7iqSqyg-NeA" >https://www.youtube.com/watch?v=7iqSqyg-NeA</a>
+</p>
 
