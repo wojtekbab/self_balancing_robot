@@ -28,6 +28,11 @@ Code was written in PlatformIO extension with arduino framework. FreeRTOS was us
 - `web_server.cpp`: web server with html page.
 - `platformio.ini`: configuration file used by PlatformIO extension.
 
+### How to Run
+1. Create empty project with PlatformIO.
+2. Copy `platformio.ini` file into project.
+3. Copy header and source files into folder src.
+
 
 ## MATLAB Code
 The MATLAB code is used to calculate mathematical model and simulate system.
