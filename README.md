@@ -24,7 +24,8 @@ Code was written in PlatformIO extension with arduino framework. FreeRTOS was us
 - `defines.cpp`: file with defines.
 - `globals.cpp`: file with global variables used by tasks.
 - `interrupts.cpp`: interrupts service routines.
-- `tasks.cpp`: some utility functions.
+- `utilities.cpp`: some utility functions.
+- `tasks.cpp`: file with FreeRTOS tasks.
 - `web_server.cpp`: web server with html page.
 - `platformio.ini`: configuration file used by PlatformIO extension.
 
