@@ -1,0 +1,22 @@
+# Parameters used inside model of self-balancing robot
+dict_with_params = {
+    "g": 9.81,  # % gravity [N/kg]
+    "L": 0.111,  # % distance of the pendulum's center of mass [m]
+    "D": 0.245,  # % distance between the wheels [m]
+    "r": 0.045,  # % wheel radius [m]
+    "J_v_x": 26653e-6,  # % principal moment of inertia of the platform, x-axis [kg m^2]
+    "J_v_y": 22632e-6,  # % principal moment of inertia of the platform, y-axis [kg m^2]
+    "J_v_z": 7631e-6,  # % principal moment of inertia of the platform, z-axis [kg m^2]
+    "m_v": 1.740,  # % mass of the platform [kg]
+    "J_w_xz": 16e-6,  # % principal moment of inertia of the wheel, x/z-axis [kg m^2]
+    "J_w_y": 33e-6,  # % principal moment of inertia of the wheel, y-axis [kg m^2]
+    "m_w": 0.035,  # % mass of the wheel + adapter, shaft and gears estimated [kg]
+    "b_Coul_R": 0.1,  # % Coulomb friction [Nm]
+    "b_visc_R": 0.01,  # % viscous friction [Nms/rad]
+    "b_Coul_L": 0.1,  # % Coulomb friction [Nm]
+    "b_visc_L": 0.01,  # % viscous friction [Nms/rad]
+    "R": 2.22,  # % motor resistance [Ω]
+    "k_e": 0.56,  # % electric constant [Vs/rad]
+    "k_m": 0.39,  # % mechanical constant [Nm/A]
+    "L_m": 0.0023,  # % inductance of the motor coil [H]
+}
