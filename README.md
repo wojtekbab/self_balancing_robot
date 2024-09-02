@@ -48,6 +48,20 @@ The MATLAB code is used to calculate mathematical model and simulate system.
 2. Run `s2_mathematical_model.m` to load parameters and calculate K matrix.
 3. Run `sim1_unlinear_model_with_LQR.slx` to test system output for given reference velocities or different initial state.
 
+## Python Code
+In case when Matlab is not available, all necessary scripts were translated for python.
+
+### Files
+- `requirements.txt`: contain all necessary python modules.
+- `parameters.py`: contain dictionary with system parameters.
+- `p1_mathematical_model.ipynb`: notebook for symbolic equations with sympy to obtain mathematical model.
+- `p2_closed_loop_system.ipynb`: notebook to make simulations with closed loop system with LQR regulator  
+
+### How to Run
+1. Install necessary modules.
+2. Run `p1_mathematical_model.ipynb` to obtain mathematical model.
+3. Run `p2_closed_loop_system.ipynb` to see result of system simulations.
+
 ## Inventor Project
 Image from Inventor project was included to repository. 3D model was created to design distribution of elements and to calculate parameters of vehicle inertia. 
 
